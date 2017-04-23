@@ -46,29 +46,26 @@ app.get('/lectionary', function(req, res) {
 var bibleUrl = {
   host: 'bible-api.com',
   port: '443',
-  path: '/jn%203:20'
+  path: '/jn%203:17'
 };
-https.get(bibleUrl, function(res) {
+var verse = https.get(bibleUrl, function(res) {
     var body = '';
     res.on('data', function(chunk){
       body += chunk;
     });
     res.on('end', function(){
       var response = JSON.parse(body);
-      app.get('/api/lectionary', function(req, res) {
-        res.json([response]);
-      });
-      // console.log("Got a response: ", response);
+      console.log("Got a response: ", response);
     });
   }).on('error', function(e){
     console.log("Got an error: ", e);
   })
 
-// app.get('/api/lectionary', function(req, res) {
+app.get('/api/lectionary', function(req, res) {
 //Pretend this is hitting a database
 
-// console.log("This is what's in verse.reference: " + verse.reference);
-// res.json(verse.reference);
+
+res.json(verse);
 // http://stackoverflow.com/questions/11826384/calling-a-json-api-with-node-js
 //   res.json(http.get(bibleUrl, function(res) {
 //     var body = '';
@@ -83,7 +80,7 @@ https.get(bibleUrl, function(res) {
 //     console.log("Got an error: ", e);
 //   })
 // )
-// })
+})
     //     console.log("Got response: " + res.statusCode);
     //   }).on('error', function(e) {
     //     console.log("Got error: " + e.message);

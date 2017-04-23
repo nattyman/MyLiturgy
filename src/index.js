@@ -6,8 +6,10 @@ import './dist/js/material.min.js';
 import './dist/js/ripples.min.js';
 
 import {getMeditations} from './api/meditateApi';
+import {getLectionary} from './api/lectionaryApi';
 
-// Populate table of users via API call.
+
+// Populate table of meditations via API call.//
 getMeditations().then(result => {
   let pageBody = "";
 
@@ -34,8 +36,28 @@ result.forEach(meditation => {
   global.document.getElementById('meditations').innerHTML = pageBody;
 
   // const deleteLinks = global.document.getElementsByClassName('deleteuser');
+});
 
+
+  // Populate lectionary via API call.//
+  getLectionary().then(result => {
+    let pageBody = "";
+
+  result.forEach(lectionary => {
+    pageBody+= `
+    <div>
+    <h2>Lectionary</h2>
+    <h3>${lectionary.reference} </h3>
+        <p>${lectionary.text}</p>
+    </div>
+  `
+
+  });
+    global.document.getElementById('lectionary').innerHTML = pageBody;
 
 });
+
+
+
 
 $.material.init()
