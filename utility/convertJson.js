@@ -13,9 +13,14 @@ for (i=0; i<users.length; i++) {
   var lectDate = users[i].DTSTART
   if(lectDate <= date) {
     message =  users[i].SUMMARY;
+    verseRefs = users[i].DESCRIPTION;
   }
 }
 console.log("Today is: " + date + ": " + message);
+
+var verses = verseRefs.split("\\n");
+
+console.log(verses);
 
 // var file = require('./lectionaryTest.json');
 //
