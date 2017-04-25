@@ -1,0 +1,47 @@
+[
+  {
+  "DTSTART": "20170423",
+  "DTEND": "20170424",
+  "DTSTAMP": "20170421T010201Z",
+  "UID": "1492923600-40-3232@lectionary.library.vanderbilt.edu",
+  "SUMMARY": "Second Sunday of Easter (Year A)",
+  "URL;VALUE=URI": "http://lectionary.library.vanderbilt.edu/texts.php?id=40",
+  "DESCRIPTION": "Acts 2:14a, 22-32\\nPsalm 16\\n1 Peter 1:3-9\\nJohn 20:19-31\\nhttp://lectionary.library.vanderbilt.edu/texts.php?id=40"
+},
+{
+  "DTSTART": "20170430",
+  "DTEND": "20170501",
+  "DTSTAMP": "20170421T010201Z",
+  "UID": "1493528400-41-3233@lectionary.library.vanderbilt.edu",
+  "SUMMARY": "Third Sunday of Easter (Year A)",
+  "URL;VALUE=URI": "http://lectionary.library.vanderbilt.edu/texts.php?id=41",
+  "DESCRIPTION": "Acts 2:14a, 36-41\\nPsalm 116:1-4, 12-19\\n1 Peter 1:17-23\\nLuke 24:13-35\\nhttp://lectionary.library.vanderbilt.edu/texts.php?id=41"
+},
+{
+  "DTSTART": "20170507",
+  "DTEND": "20170508",
+  "DTSTAMP": "20170421T010201Z",
+  "UID": "1494133200-42-3234@lectionary.library.vanderbilt.edu",
+  "SUMMARY": "Fourth Sunday of Easter (Year A)",
+  "URL;VALUE=URI": "http://lectionary.library.vanderbilt.edu/texts.php?id=42",
+  "DESCRIPTION": "Acts 2:42-47\\nPsalm 23\\n1 Peter 2:19-25\\nJohn 10:1-10\\nhttp://lectionary.library.vanderbilt.edu/texts.php?id=42"
+},
+{
+  "DTSTART": "20170514",
+  "DTEND": "20170515",
+  "DTSTAMP": "20170421T010201Z",
+  "UID": "1494738000-43-3235@lectionary.library.vanderbilt.edu",
+  "SUMMARY": "Fifth Sunday of Easter (Year A)",
+  "URL;VALUE=URI": "http://lectionary.library.vanderbilt.edu/texts.php?id=43",
+  "DESCRIPTION": "Acts 7:55-60\\nPsalm 31:1-5, 15-16\\n1 Peter 2:2-10\\nJohn 14:1-14\\nhttp://lectionary.library.vanderbilt.edu/texts.php?id=43"
+},
+{
+  "DTSTART": "20170521",
+  "DTEND": "20170522",
+  "DTSTAMP": "20170421T010201Z",
+  "UID": "1495342800-44-3236@lectionary.library.vanderbilt.edu",
+  "SUMMARY": "Sixth Sunday of Easter (Year A)",
+  "URL;VALUE=URI": "http://lectionary.library.vanderbilt.edu/texts.php?id=44",
+  "DESCRIPTION": "Acts 17:22-31\\nPsalm 66:8-20\\n1 Peter 3:13-22\\nJohn 14:15-21\\nhttp://lectionary.library.vanderbilt.edu/texts.php?id=44"
+}
+]
