@@ -37,33 +37,56 @@ app.get('/api/meditations', function(req, res) {
   ]);
 });
 
-// LECTIONARY //
+// ROUTE LECTIONARY //
 app.get('/lectionary', function(req, res) {
   res.sendFile(path.join(__dirname, '../src/lectionary.html'));
 });
+
+// GET TODAYS DATE //
+var today = getTodaysDate();
+console.log("**Today is: " + today );
 
 // READ LECTIONARY JSON FILE //
 var fs = require('fs');
 var lectJson = JSON.parse(fs.readFileSync('./src/data/YearA1617.json', 'utf8'));
 
-var today = getTodaysDate();
-console.log("**Today is: " + today );
-
 // console.log(lectJson[0]);
 var i=0;
 for (i=0; i<lectJson.length; i++) {
-  console.log(lectJson[i].DTSTART);
+
+  var lectDate = lectJson[i].DTSTART;
+  // console.log(lectDate);
+
+  // var verses = "";
+  if (lectDate <= today) {
+    // var summary = lectJson.SUMMARY;
+    var verses = lectJson[i].DESCRIPTION;
+  }
+  // console.log(verses);
+
+  // var verses = lectJson[i].DESCRIPTION;
 
 }
+// split the verses/description into individual verses in an array
+ var verseArray = [];
+ verseArray = verses.split("\\n");
 
+console.log(verseArray);
 
-// GET BIBLE VERSE //
-var bibleUrl = {
-  host: 'bible-api.com',
-  port: '443',
-  path: '/jn%203:20'
-};
-https.get(bibleUrl, function(res) {
+// LOOP THROUGH
+for (i = 0; i < (verseArray.length - 1); i++) {
+  // GET BIBLE VERSE //
+  var scrubbedVerse = verseArray[i].replace(/(\d)[ab]/, '$1')
+console.log("scrubbedVerse: " + scrubbedVerse);
+  var bibleUrl = {
+    host: 'bible-api.com',
+    port: '443',
+    path: '/' + encodeURI(scrubbedVerse) //jn%203:20
+  };
+}
+  console.log("This is the BibleURL:" + bibleUrl.path);  //test
+
+  https.get(bibleUrl, function(res) {
     var body = '';
     res.on('data', function(chunk){
       body += chunk;
@@ -78,6 +101,10 @@ https.get(bibleUrl, function(res) {
   }).on('error', function(e){
     console.log("Got an error: ", e);
   })
+//}
+
+
+
 
 // app.get('/api/lectionary', function(req, res) {
 //Pretend this is hitting a database
