@@ -5,16 +5,20 @@ import './dist/css/ripples.min.css';
 import './dist/js/material.min.js';
 import './dist/js/ripples.min.js';
 
-import {getMeditations} from './api/meditateApi';
-import {getLectionary} from './api/lectionaryApi';
+import {
+  getMeditations
+} from './api/meditateApi';
+import {
+  getLectionary
+} from './api/lectionaryApi';
 
 
 // Populate table of meditations via API call.//
 getMeditations().then(result => {
   let pageBody = "";
 
-result.forEach(meditation => {
-  pageBody+= `
+  result.forEach(meditation => {
+    pageBody += `
   <a href="/meditations" class="btn btn-default btn-lg btn-block btn-raised app">
   <div class="list-group-item">
     <div class="row-action-primary">
@@ -32,28 +36,27 @@ result.forEach(meditation => {
 </div>
 `
 
-});
+  });
   global.document.getElementById('meditations').innerHTML = pageBody;
 
   // const deleteLinks = global.document.getElementsByClassName('deleteuser');
 });
 
 
-  // Populate lectionary via API call.//
-  getLectionary().then(result => {
-    let pageBody = "";
+// Populate lectionary via API call.//
+getLectionary().then(result => {
+  let pageBody = "";
 
   result.forEach(lectionary => {
-    pageBody+= `
+    pageBody += `
     <div>
-    <h2>Lectionary</h2>
     <h3>${lectionary.reference} </h3>
         <p>${lectionary.text}</p>
     </div>
   `
 
   });
-    global.document.getElementById('lectionary').innerHTML = pageBody;
+  global.document.getElementById('lectionary').innerHTML = pageBody;
 
 });
 
