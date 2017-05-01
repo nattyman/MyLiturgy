@@ -19,7 +19,7 @@ getMeditations().then(result => {
 
   result.forEach(meditation => {
     pageBody += `
-  <a href="/meditations" class="btn btn-default btn-lg btn-block btn-raised app">
+  <a href="${meditation.path}" class="btn btn-default btn-lg btn-block btn-raised app">
   <div class="list-group-item">
     <div class="row-action-primary">
       <i class="material-icons md-36">volume_up</i>

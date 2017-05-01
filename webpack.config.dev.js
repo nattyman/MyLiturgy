@@ -13,7 +13,7 @@ export default {
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'src'),
-  //  path: '/src',
+    //  path: '/src',
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -26,33 +26,50 @@ export default {
     })
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loaders: ['style','css']},
+    loaders: [{
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel']
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css']
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader?attrs[]=video:src'
+      },
+      {
+        test: /\.mp4$/,
+        loaders: 'file-loader',
+        options: {
+          name: '[path]/video/[name].[ext]'
+        }
+      },
       // {test: /\.jpg$/, loaders: ['images','jpg']}
-    //  {test: /\.css$/, loaders: ['style','css']}
-    {
-      test: /\.(jpg|png|svg)$/,
-      loader: 'file-loader',
-      options: {
-        name: '[path]/images/[name].[ext]',
+      //  {test: /\.css$/, loaders: ['style','css']}
+      {
+        test: /\.(jpg|png|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path]/images/[name].[ext]'
         },
       },
     ]
   }
   // var ImageminPlugin = require('imagemin-webpack-plugin').default;
-// Or if using ES2015:
-// import ImageminPlugin from 'imagemin-webpack-plugin'
+  // Or if using ES2015:
+  // import ImageminPlugin from 'imagemin-webpack-plugin'
 
-// module.exports = {
-//   plugins: [
-//     // Make sure that the plugin is after any plugins that add images
-//     new ImageminPlugin({
-//       disable: process.env.NODE_ENV !== 'production', // Disable during development
-//       pngquant: {
-//         quality: '95-100'
-//       }
-//     })
-//   ]
-// }
+  // module.exports = {
+  //   plugins: [
+  //     // Make sure that the plugin is after any plugins that add images
+  //     new ImageminPlugin({
+  //       disable: process.env.NODE_ENV !== 'production', // Disable during development
+  //       pngquant: {
+  //         quality: '95-100'
+  //       }
+  //     })
+  //   ]
+  // }
 }
