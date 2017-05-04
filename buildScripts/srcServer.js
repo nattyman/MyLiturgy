@@ -6,6 +6,7 @@ import webpack from 'webpack';
 import config from '../webpack.config.dev';
 // import https from 'https'; // used to get api responses
 var request = require('request-json');
+var decode = require('decode-html');
 
 // var contemplationVideo = require("../src/video/CONTEMPLATION-low.mp4"); // eslint-disable-line no-unused-vars
 
@@ -19,7 +20,11 @@ const port = 3000;
 const app = express();
 const compiler = webpack(config);
 
+// setup ejs templating //
+app.set('views', path.join(__dirname, '../src/views'));
 app.set('view engine', 'ejs');
+
+
 app.use(express.static('../src/video'));
 app.use('/static', express.static(path.join(__dirname, '../src/video')));
 
@@ -66,6 +71,38 @@ app.get('/meditations/contemplation', function(req, res) {
   res.sendFile(path.join(__dirname, '../src/contemplation.html'));
 });
 
+// PRAYERS //
+
+// var prayerVal = [{
+//   "title": "Prayer 1",
+//   "text": "prayer 1 text"
+// }, {
+//   "title": "Prayer 2",
+//   "text": "prayer 2 text"
+// }];
+
+
+// READ PRAYERS JSON FILE //
+var fs = require('fs');
+var prayerJson = JSON.parse(fs.readFileSync('./src/data/ancientPrayers.json', 'utf8'));
+
+for (i = 0; i < prayerJson.length; i++) {
+  prayerJson[i].text = decode(prayerJson[i].text);
+  console.log(prayerJson[i].text);
+}
+// prayers page
+app.get('/prayers', function(req, res) {
+
+  // response.push({
+  //   "reference": body.reference,
+  //   "text": verse
+  // })
+
+  res.render('prayers', {
+    prayerJson
+  });
+});
+
 
 // ROUTE LECTIONARY //
 app.get('/lectionary', function(req, res) {
@@ -77,7 +114,7 @@ var today = getTodaysDate();
 console.log("**Today is: " + today);
 
 // READ LECTIONARY JSON FILE //
-var fs = require('fs');
+// var fs = require('fs');
 var lectJson = JSON.parse(fs.readFileSync('./src/data/YearA1617.json', 'utf8'));
 
 var i = 0;
@@ -101,10 +138,13 @@ console.log(verseArray);
 var response = [];
 
 for (i = 0; i < (verseArray.length - 1); i++) {
-  var scrubbedVerse = verseArray[i].replace(/(\d)[ab]/, '$1')
+  var scrubbedVerse = verseArray[i].replace(/(\d)[ab]/, '$1');
+  scrubbedVerse = scrubbedVerse.replace(/\;/, '\,')
+
   var client = request.createClient('https://bible-api.com/');
   client.get(encodeURI(scrubbedVerse), function(err, res, body) {
-
+    // console.log("Count: " + i);
+    // console.log(body.text);
     var verse = body.text.replace(/\n/g, '<br>')
 
     response.push({

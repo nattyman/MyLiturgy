@@ -7,24 +7,11 @@ export function getLectionary() {
   return get('api/lectionary');
 }
 
-// export function deleteUser(id) {
-//   return del(`users/${id}`);
-// }
-
 function get(url) {
   return fetch(baseUrl + url).then(onSuccess, OnError);
 }
 
-// Can't call func "delete" since it's a reserved word in JS.
-// function del(url) {
-//   const request = new Request(baseUrl + url, {
-//     method: 'Delete'
-//   });
-//
-//   return fetch(request).then(onSuccess, OnError);
-// }
-
-function onSuccess(response){
+function onSuccess(response) {
   return response.json();
 }
 

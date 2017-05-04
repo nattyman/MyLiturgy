@@ -1,0 +1,24 @@
+<html>
+<head>
+  <% include ./partials/head %>
+</head>
+<body>
+<% include ./partials/header %>
+
+<h2>Prayers</h2>
+<div>
+  <% for(var i=0; i<prayerJson.length; i++) { %>
+  <h3><%=prayerJson[i].title%></h3>
+  <% var prayerText = JSON.stringify(prayerJson[i].text); %>
+  <p><%-prayerText%></p>
+  <hr>
+<% } %>
+  <div>
+
+</div>
+
+
+<% include ./partials/footer %>
+
+</body>
+</html>
